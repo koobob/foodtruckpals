@@ -1,0 +1,20 @@
+services:
+  api:
+    build:
+      context: .
+    # stdin_open: true # support behavior needed when shelling  into container
+    volumes:
+      - .:/usr/src/app:delegated
+    working_dir: /usr/src/app
+  db:
+    image: postgres:16.0
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: 'foodtruckpals'
+      POSTGRES_PASSWORD: 'foodtruckpals'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
