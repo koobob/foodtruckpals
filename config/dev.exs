@@ -2,9 +2,9 @@ import Config
 
 # Configure your database
 config :food_truck_pals, FoodTruckPals.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: "foodtruckpals",
+  password: "foodtruckpals",
+  hostname: "db",
   database: "food_truck_pals_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
