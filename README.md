@@ -30,6 +30,21 @@ See diagrams for overview of user stories and system architecture.
 Spin up the containers using docker compose:
 > docker compose up
 
+If this is the first time starting the phoenix service, then you'll see
+error output with info about running `mix deps.get` and `mix deps.compile`.
+You should terminal into the docker container and run these commands:
+
+```
+> docker compose api /bin/bash
+> mix deps.get
+> mix deps.compile
+> exit
+```
+
+Afterwards, please be sure to restart the docker compose containers:
+
+> docker compose restart
+
 Then visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Start a terminal in the elixir container (to run tests, for example):
