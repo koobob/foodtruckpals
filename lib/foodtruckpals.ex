@@ -1,6 +1,6 @@
-defmodule FoodTruckPals do
+defmodule Foodtruckpals do
   @moduledoc """
-  FoodTruckPals keeps the contexts that define your domain
+  Foodtruckpals keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

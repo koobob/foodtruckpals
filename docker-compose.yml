@@ -15,7 +15,7 @@ services:
     environment:
       POSTGRES_USER: 'foodtruckpals'
       POSTGRES_PASSWORD: 'foodtruckpals'
-      POSTGRES_DB: 'food_truck_pals_dev'
+      POSTGRES_DB: 'foodtruckpals_dev'
     volumes:
       - db_data:/var/lib/postgresql/data
 volumes:

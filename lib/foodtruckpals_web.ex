@@ -1,12 +1,12 @@
-defmodule FoodTruckPalsWeb do
+defmodule FoodtruckpalsWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use FoodTruckPalsWeb, :controller
-      use FoodTruckPalsWeb, :html
+      use FoodtruckpalsWeb, :controller
+      use FoodtruckpalsWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -39,10 +39,9 @@ defmodule FoodTruckPalsWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: FoodTruckPalsWeb.Layouts]
+        layouts: [html: FoodtruckpalsWeb.Layouts]
 
       import Plug.Conn
-      import FoodTruckPalsWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -51,9 +50,9 @@ defmodule FoodTruckPalsWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: FoodTruckPalsWeb.Endpoint,
-        router: FoodTruckPalsWeb.Router,
-        statics: FoodTruckPalsWeb.static_paths()
+        endpoint: FoodtruckpalsWeb.Endpoint,
+        router: FoodtruckpalsWeb.Router,
+        statics: FoodtruckpalsWeb.static_paths()
     end
   end
 

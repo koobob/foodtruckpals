@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :food_truck_pals, FoodTruckPals.Repo,
+config :foodtruckpals, Foodtruckpals.Repo,
   username: "foodtruckpals",
   password: "foodtruckpals",
   hostname: "db",
-  database: "food_truck_pals_dev",
+  database: "foodtruckpals_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,14 +16,14 @@ config :food_truck_pals, FoodTruckPals.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :food_truck_pals, FoodTruckPalsWeb.Endpoint,
+config :foodtruckpals, FoodtruckpalsWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "yZviD0LgSKzqwXdfuLjKVwhXGbAi/C0KHhfpGX/agNaRYMtOPNOPuXhcGT1yCpbd",
+  secret_key_base: "CxyLX9JIEFm+SZui0ccFyFXnIR5M/D2gH3qopwfHx6WP9En8mptt/EouXq7WzsFx",
   watchers: []
 
 # ## SSL Support
@@ -50,7 +50,7 @@ config :food_truck_pals, FoodTruckPalsWeb.Endpoint,
 # different ports.
 
 # Enable dev routes for dashboard and mailbox
-config :food_truck_pals, dev_routes: true
+config :foodtruckpals, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

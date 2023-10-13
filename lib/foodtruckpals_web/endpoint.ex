@@ -1,13 +1,13 @@
-defmodule FoodTruckPalsWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :food_truck_pals
+defmodule FoodtruckpalsWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :foodtruckpals
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_food_truck_pals_key",
-    signing_salt: "aPnlv2Eg",
+    key: "_foodtruckpals_key",
+    signing_salt: "uIX6W0fm",
     same_site: "Lax"
   ]
 
@@ -19,15 +19,15 @@ defmodule FoodTruckPalsWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :food_truck_pals,
+    from: :foodtruckpals,
     gzip: false,
-    only: FoodTruckPalsWeb.static_paths()
+    only: FoodtruckpalsWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :food_truck_pals
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :foodtruckpals
   end
 
   plug Plug.RequestId
@@ -41,5 +41,5 @@ defmodule FoodTruckPalsWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug FoodTruckPalsWeb.Router
+  plug FoodtruckpalsWeb.Router
 end

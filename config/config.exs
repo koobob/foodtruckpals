@@ -7,20 +7,20 @@
 # General application configuration
 import Config
 
-config :food_truck_pals,
-  ecto_repos: [FoodTruckPals.Repo],
+config :foodtruckpals,
+  ecto_repos: [Foodtruckpals.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :food_truck_pals, FoodTruckPalsWeb.Endpoint,
+config :foodtruckpals, FoodtruckpalsWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [json: FoodTruckPalsWeb.ErrorJSON],
+    formats: [json: FoodtruckpalsWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: FoodTruckPals.PubSub,
-  live_view: [signing_salt: "rZi1aB7G"]
+  pubsub_server: Foodtruckpals.PubSub,
+  live_view: [signing_salt: "goF6s/1m"]
 
 # Configures the mailer
 #
@@ -29,7 +29,7 @@ config :food_truck_pals, FoodTruckPalsWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :food_truck_pals, FoodTruckPals.Mailer, adapter: Swoosh.Adapters.Local
+config :foodtruckpals, Foodtruckpals.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configures Elixir's Logger
 config :logger, :console,
