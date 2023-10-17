@@ -70,7 +70,8 @@ Spin down the containers using docker compose:
 ## ToDos
 
 - Create db tables:
-    - food truck data cache (mirror sfgov)
+    - [x] facilities data cache (mirror sfgov)
     - user and other tables
 
-- Create daily task to sync data from sfgov to local db
+- [ ] Create daily task to sync data from sfgov to local db
+
