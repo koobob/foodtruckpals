@@ -21,9 +21,22 @@ See diagrams for overview of user stories and system architecture.
 
 ### Architecture
 
+![Overview](diagrams/overview.png)
+
 - API backend
+    - Serves requests from client
+    - GraphQL based
 - Food Truck database
+    - Caches sfgov truck data
+    - Contexts for:
+        - Users (accounts)
+        - Eating history
+        - Favorite eats
+        - Ratings
+        - Followers
 - sfgov data api
+    - Grab latest sfgov data and sync into the Food Truck database.
+    - Create process to handle this async on a regular basis.
 
 ## Developing w Docker
 
