@@ -17,7 +17,7 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
 
     test "get_facility!/1 returns the facility with given id" do
       facility = facility_fixture()
-      assert Facilities.get_facility!(facility.id) == facility
+      assert Facilities.get_facility!(facility.locationid) == facility
     end
 
     test "create_facility/1 with valid data creates a facility" do
@@ -60,13 +60,13 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
     test "update_facility/2 with invalid data returns error changeset" do
       facility = facility_fixture()
       assert {:error, %Ecto.Changeset{}} = Facilities.update_facility(facility, @invalid_attrs)
-      assert facility == Facilities.get_facility!(facility.id)
+      assert facility == Facilities.get_facility!(facility.locationid)
     end
 
     test "delete_facility/1 deletes the facility" do
       facility = facility_fixture()
       assert {:ok, %Facility{}} = Facilities.delete_facility(facility)
-      assert_raise Ecto.NoResultsError, fn -> Facilities.get_facility!(facility.id) end
+      assert_raise Ecto.NoResultsError, fn -> Facilities.get_facility!(facility.locationid) end
     end
 
     test "change_facility/1 returns a facility changeset" do

@@ -2,10 +2,13 @@ defmodule Foodtruckpals.Contexts.Facilities.Facility do
   use Ecto.Schema
   import Ecto.Changeset
 
+  # Use locationid as the primary key.
+  # This data table is a mirror of the sfgov source of truth.
+  @primary_key {:locationid, :id, autogenerate: false}
+
   schema "facilities" do
     field :status, :string
     field :address, :string
-    field :locationid, :integer
     field :applicant, :string
     field :facility_type, :string
     field :food_items, :string
