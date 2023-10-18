@@ -8,6 +8,26 @@ defmodule Foodtruckpals.Contexts.Facilities do
 
   alias Foodtruckpals.Contexts.Facilities.Facility
 
+  def get_sfgov_facilities() do
+    with {:ok, json} <- api_client().get_data(),
+         {:ok, data} <- Jason.decode(json) do
+      {:ok, data}
+    else
+      {:error, %Jason.DecodeError{}} ->
+        {:error, "Error decoding json value"}
+
+      {:error, error_message} ->
+        {:error, error_message}
+
+      _ ->
+        {:error, "Unknown error"}
+    end
+  end
+
+  defp api_client() do
+    Application.get_env(:foodtruckpals, :sfgov_api_client, Foodtruckpals.Clients.SfgovApi)
+  end
+
   @doc """
   Returns the list of facilities.
 

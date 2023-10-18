@@ -53,7 +53,7 @@ This service will have the following major components:
 
 1. **Populate food facility data**
     - [x] create facilities data cache (mirror sfgov)
-    - [ ] create module to grab data from sfgov
+    - [x] create module to grab data from sfgov
     - [ ] create function to bulk update facilities cache data
     - [ ] create ansyc job to update cache daily (use Oban?)
 2. **User registration**
