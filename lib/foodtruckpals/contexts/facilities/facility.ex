@@ -23,7 +23,29 @@ defmodule Foodtruckpals.Contexts.Facilities.Facility do
   @doc false
   def changeset(facility, attrs) do
     facility
-    |> cast(attrs, [:locationid, :status, :address, :applicant, :facility_type, :food_items, :latitude, :longitude, :schedule_url, :days_hours])
-    |> validate_required([:locationid, :status, :address, :applicant, :facility_type, :food_items, :latitude, :longitude, :schedule_url, :days_hours])
+    |> cast(attrs, [
+      :locationid,
+      :status,
+      :address,
+      :applicant,
+      :facility_type,
+      :food_items,
+      :latitude,
+      :longitude,
+      :schedule_url,
+      :days_hours
+    ])
+    |> validate_required([
+      :locationid,
+      :status,
+      :address,
+      :applicant,
+      :facility_type,
+      :food_items,
+      :latitude,
+      :longitude,
+      :schedule_url,
+      :days_hours
+    ])
   end
 end

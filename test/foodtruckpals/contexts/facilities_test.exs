@@ -1,14 +1,63 @@
 defmodule Foodtruckpals.Contexts.FacilitiesTest do
   use Foodtruckpals.DataCase
 
+  import Mox
+
   alias Foodtruckpals.Contexts.Facilities
+
+  setup :verify_on_exit!
+
+  describe "get_sfgov_facilities/0" do
+    test "successful api call returns json data as the resulting value" do
+      expect(SfgovApiMock, :get_data, fn ->
+        {:ok, "[{\"abc\":\"123\"},{\"def\":\"456\"}]"}
+      end)
+
+      {:ok, data} = Facilities.get_sfgov_facilities()
+      [obj1, _tail] = data
+
+      assert is_list(data)
+      assert is_map(obj1)
+    end
+
+    test "json decode error returns appropriate message" do
+      expect(SfgovApiMock, :get_data, fn ->
+        {:ok, "[{not valid json]"}
+      end)
+
+      {:error, message} = Facilities.get_sfgov_facilities()
+
+      assert message == "Error decoding json value"
+    end
+
+    test "failed api call passes thru api error" do
+      expect(SfgovApiMock, :get_data, fn ->
+        {:error, "generic api problem"}
+      end)
+
+      {:error, message} = Facilities.get_sfgov_facilities()
+
+      assert message == "generic api problem"
+    end
+  end
 
   describe "facilities" do
     alias Foodtruckpals.Contexts.Facilities.Facility
 
     import Foodtruckpals.Contexts.FacilitiesFixtures
 
-    @invalid_attrs %{status: nil, address: nil, locationid: nil, applicant: nil, facility_type: nil, food_items: nil, latitude: nil, longitude: nil, schedule_url: nil, days_hours: nil}
+    @invalid_attrs %{
+      status: nil,
+      address: nil,
+      locationid: nil,
+      applicant: nil,
+      facility_type: nil,
+      food_items: nil,
+      latitude: nil,
+      longitude: nil,
+      schedule_url: nil,
+      days_hours: nil
+    }
 
     test "list_facilities/0 returns all facilities" do
       facility = facility_fixture()
@@ -21,7 +70,18 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
     end
 
     test "create_facility/1 with valid data creates a facility" do
-      valid_attrs = %{status: "some status", address: "some address", locationid: 42, applicant: "some applicant", facility_type: "some facility_type", food_items: "some food_items", latitude: 120.5, longitude: 120.5, schedule_url: "some schedule_url", days_hours: "some days_hours"}
+      valid_attrs = %{
+        status: "some status",
+        address: "some address",
+        locationid: 42,
+        applicant: "some applicant",
+        facility_type: "some facility_type",
+        food_items: "some food_items",
+        latitude: 120.5,
+        longitude: 120.5,
+        schedule_url: "some schedule_url",
+        days_hours: "some days_hours"
+      }
 
       assert {:ok, %Facility{} = facility} = Facilities.create_facility(valid_attrs)
       assert facility.status == "some status"
@@ -42,7 +102,19 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
 
     test "update_facility/2 with valid data updates the facility" do
       facility = facility_fixture()
-      update_attrs = %{status: "some updated status", address: "some updated address", locationid: 43, applicant: "some updated applicant", facility_type: "some updated facility_type", food_items: "some updated food_items", latitude: 456.7, longitude: 456.7, schedule_url: "some updated schedule_url", days_hours: "some updated days_hours"}
+
+      update_attrs = %{
+        status: "some updated status",
+        address: "some updated address",
+        locationid: 43,
+        applicant: "some updated applicant",
+        facility_type: "some updated facility_type",
+        food_items: "some updated food_items",
+        latitude: 456.7,
+        longitude: 456.7,
+        schedule_url: "some updated schedule_url",
+        days_hours: "some updated days_hours"
+      }
 
       assert {:ok, %Facility{} = facility} = Facilities.update_facility(facility, update_attrs)
       assert facility.status == "some updated status"

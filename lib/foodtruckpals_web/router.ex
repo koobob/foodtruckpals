@@ -11,7 +11,6 @@ defmodule FoodtruckpalsWeb.Router do
 
   # Enable Swoosh mailbox preview in development
   if Application.compile_env(:foodtruckpals, :dev_routes) do
-
     scope "/dev" do
       pipe_through [:fetch_session, :protect_from_forgery]
 
