@@ -8,7 +8,7 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
   setup :verify_on_exit!
 
   describe "get_sfgov_facilities/0" do
-    test "successful api call returns json data as the resulting value" do
+    test "successful api call returns a list of data maps" do
       expect(SfgovApiMock, :get_data, fn ->
         {:ok, "[{\"abc\":\"123\"},{\"def\":\"456\"}]"}
       end)
