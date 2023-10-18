@@ -3,15 +3,14 @@ defmodule Foodtruckpals.Clients.SfgovApi do
   A client for the SF gov api.
   """
 
-  @alias Foodtruckpals.Clients.SfgovApiBehaviour
-  @behaviour SfgovApiBehaviour
+  @behaviour Foodtruckpals.Clients.SfgovApiBehaviour
 
   @facilities_url "https://data.sfgov.org/resource/rqzj-sfat.json"
 
+  @impl Foodtruckpals.Clients.SfgovApiBehaviour
   @doc """
   Grabs data for all facilities as a Map.
   """
-  @impl SfgovApiBehaviour
   def get_data() do
     response =
       Finch.build(:get, @facilities_url)
