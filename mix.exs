@@ -32,18 +32,19 @@ defmodule Foodtruckpals.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:dns_cluster, "~> 0.1.1"},
+      {:ecto_sql, "~> 3.10"},
+      {:ex_machina, "~> 2.7.0", only: :test},
+      {:finch, "~> 0.13"},
+      {:jason, "~> 1.2"},
+      {:mox, "~> 1.0", only: :test},
       {:phoenix, "~> 1.7.9"},
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.10"},
+      {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:swoosh, "~> 1.3"},
-      {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
-      {:jason, "~> 1.2"},
-      {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"},
-      {:mox, "~> 1.0", only: :test}
+      {:telemetry_poller, "~> 1.0"}
     ]
   end
 
