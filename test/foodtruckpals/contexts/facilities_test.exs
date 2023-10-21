@@ -5,9 +5,9 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
 
   alias Foodtruckpals.Contexts.Facilities
 
-  setup :verify_on_exit!
-
   describe "get_sfgov_facilities/0" do
+    setup :verify_on_exit!
+
     test "successful api call returns a list of data maps" do
       expect(SfgovApiMock, :get_data, fn ->
         {:ok, "[{\"abc\":\"123\"},{\"def\":\"456\"}]"}
@@ -41,10 +41,16 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
     end
   end
 
-  describe "facilities" do
+  describe "sync_facilities_data/0" do
     alias Foodtruckpals.Contexts.Facilities.Facility
 
-    import Foodtruckpals.Contexts.FacilitiesFixtures
+    test "new rows are  added to cache"
+
+    test "existing rows are updated in cache"
+  end
+
+  describe "facilities" do
+    alias Foodtruckpals.Contexts.Facilities.Facility
 
     @invalid_attrs %{
       status: nil,
@@ -60,12 +66,12 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
     }
 
     test "list_facilities/0 returns all facilities" do
-      facility = facility_fixture()
+      facility = insert(:facility)
       assert Facilities.list_facilities() == [facility]
     end
 
     test "get_facility!/1 returns the facility with given id" do
-      facility = facility_fixture()
+      facility = insert(:facility)
       assert Facilities.get_facility!(facility.locationid) == facility
     end
 
@@ -101,7 +107,7 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
     end
 
     test "update_facility/2 with valid data updates the facility" do
-      facility = facility_fixture()
+      facility = insert(:facility)
 
       update_attrs = %{
         status: "some updated status",
@@ -130,19 +136,19 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
     end
 
     test "update_facility/2 with invalid data returns error changeset" do
-      facility = facility_fixture()
+      facility = insert(:facility)
       assert {:error, %Ecto.Changeset{}} = Facilities.update_facility(facility, @invalid_attrs)
       assert facility == Facilities.get_facility!(facility.locationid)
     end
 
     test "delete_facility/1 deletes the facility" do
-      facility = facility_fixture()
+      facility = insert(:facility)
       assert {:ok, %Facility{}} = Facilities.delete_facility(facility)
       assert_raise Ecto.NoResultsError, fn -> Facilities.get_facility!(facility.locationid) end
     end
 
     test "change_facility/1 returns a facility changeset" do
-      facility = facility_fixture()
+      facility = insert(:facility)
       assert %Ecto.Changeset{} = Facilities.change_facility(facility)
     end
   end

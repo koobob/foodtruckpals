@@ -37,15 +37,7 @@ defmodule Foodtruckpals.Contexts.Facilities.Facility do
     ])
     |> validate_required([
       :locationid,
-      :status,
-      :address,
-      :applicant,
-      :facility_type,
-      :food_items,
-      :latitude,
-      :longitude,
-      :schedule_url,
-      :days_hours
+      :applicant
     ])
   end
 end

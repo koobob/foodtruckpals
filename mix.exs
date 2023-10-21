@@ -19,7 +19,7 @@ defmodule Foodtruckpals.MixProject do
   def application do
     [
       mod: {Foodtruckpals.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ex_machina, :logger, :runtime_tools]
     ]
   end
 
@@ -34,7 +34,7 @@ defmodule Foodtruckpals.MixProject do
     [
       {:dns_cluster, "~> 0.1.1"},
       {:ecto_sql, "~> 3.10"},
-      {:ex_machina, "~> 2.7.0", only: :test},
+      {:ex_machina, "~> 2.7.0"},
       {:finch, "~> 0.13"},
       {:jason, "~> 1.2"},
       {:mox, "~> 1.0", only: :test},

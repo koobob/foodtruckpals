@@ -24,6 +24,7 @@ defmodule Foodtruckpals.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Foodtruckpals.DataCase
+      import Foodtruckpals.Factory
     end
   end
 
