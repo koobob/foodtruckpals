@@ -1,4 +1,5 @@
 # FoodTruckPals
+See instructions at: [https://github.com/peck/engineering-assessment](https://github.com/peck/engineering-assessment)
 
 Elixir backend API service to help users to:
 - Find food trucks

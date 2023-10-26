@@ -44,9 +44,58 @@ defmodule Foodtruckpals.Contexts.FacilitiesTest do
   describe "sync_facilities_data/0" do
     alias Foodtruckpals.Contexts.Facilities.Facility
 
-    test "new rows are  added to cache"
+    test "new rows are  added to cache" do
+      before_count =
+        Facilities.list_facilities()
+        |> Enum.count()
 
-    test "existing rows are updated in cache"
+      expect(SfgovApiMock, :get_data, fn ->
+        json_data = """
+                  [
+                    {\"locationid\": \"1\", \"applicant\": \"Name1\"},
+                    {\"locationid\": \"2\", \"applicant\": \"Name2\"}
+                  ]
+        """
+
+        {:ok, json_data}
+      end)
+
+      Facilities.sync_sfgov_facilities()
+
+      after_count =
+        Facilities.list_facilities()
+        |> Enum.count()
+
+      assert after_count == before_count + 2
+    end
+
+    test "existing rows are updated in cache" do
+      insert(:facility, locationid: 999)
+      insert(:facility, locationid: 1000)
+
+      before_count =
+        Facilities.list_facilities()
+        |> Enum.count()
+
+      expect(SfgovApiMock, :get_data, fn ->
+        json_data = """
+                  [
+                    {\"locationid\": \"1000\", \"applicant\": \"Name1\"},
+                    {\"locationid\": \"1001\", \"applicant\": \"Name2\"}
+                  ]
+        """
+
+        {:ok, json_data}
+      end)
+
+      Facilities.sync_sfgov_facilities()
+
+      after_count =
+        Facilities.list_facilities()
+        |> Enum.count()
+
+      assert after_count == before_count + 1
+    end
   end
 
   describe "facilities" do

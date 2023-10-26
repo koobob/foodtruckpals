@@ -24,6 +24,18 @@ defmodule Foodtruckpals.Contexts.Facilities do
     end
   end
 
+  def sync_sfgov_facilities() do
+    {:ok, sfgov_data} = get_sfgov_facilities()
+
+    Enum.each(sfgov_data, fn entry ->
+      case get_facility!(entry.locationid) do
+        %Facility{} -> "record found"
+        _ -> create_facility(entry)
+      end
+      create_facility(entry)
+    end)
+  end
+
   defp api_client() do
     Application.get_env(:foodtruckpals, :sfgov_api_client, Foodtruckpals.Clients.SfgovApi)
   end

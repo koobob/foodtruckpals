@@ -4,7 +4,7 @@ defmodule Foodtruckpals.Factory do
   alias Foodtruckpals.Contexts
 
   def facility_factory() do
-    id = sequence(:facilityid, &(&1), start_at: 1000)
+    id = sequence(:facilityid, & &1, start_at: 1000)
 
     %Contexts.Facilities.Facility{
       address: "#{id} Main Street",
